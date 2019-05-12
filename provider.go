@@ -20,6 +20,15 @@ var (
 		"username",
 		"@",
 	}
+	ProviderGitHub = Provider{
+		"github",
+		"https://github.com/login/oauth/authorize",
+		"https://github.com/login/oauth/access_token",
+		"https://api.github.com/user",
+		"read:user",
+		"login",
+		"@",
+	}
 	ProviderReddit = Provider{
 		"reddit",
 		"https://old.reddit.com/api/v1/authorize",
