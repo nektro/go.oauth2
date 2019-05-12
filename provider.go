@@ -29,6 +29,15 @@ var (
 		"login",
 		"@",
 	}
+	ProviderGoogle = Provider{
+		"google",
+		"https://accounts.google.com/o/oauth2/v2/auth",
+		"https://www.googleapis.com/oauth2/v4/token",
+		"https://www.googleapis.com/oauth2/v1/userinfo?alt=json",
+		"profile",
+		"name",
+		"",
+	}
 	ProviderReddit = Provider{
 		"reddit",
 		"https://old.reddit.com/api/v1/authorize",
