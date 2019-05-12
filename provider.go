@@ -20,6 +20,15 @@ var (
 		"username",
 		"@",
 	}
+	ProviderFacebook = Provider{
+		"facebook",
+		"https://graph.facebook.com/oauth/authorize",
+		"https://graph.facebook.com/oauth/access_token",
+		"https://graph.facebook.com/me",
+		"",
+		"name",
+		"",
+	}
 	ProviderGitHub = Provider{
 		"github",
 		"https://github.com/login/oauth/authorize",
