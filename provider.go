@@ -47,6 +47,15 @@ var (
 		"name",
 		"",
 	}
+	ProviderMicrosoft = Provider{
+		"microsoft",
+		"https://login.microsoftonline.com/common/oauth2/v2.0/authorize",
+		"https://login.microsoftonline.com/common/oauth2/v2.0/token",
+		"https://graph.microsoft.com/v1.0/me/",
+		"https://graph.microsoft.com/user.read",
+		"displayName",
+		"",
+	}
 	ProviderReddit = Provider{
 		"reddit",
 		"https://old.reddit.com/api/v1/authorize",
