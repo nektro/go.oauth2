@@ -11,4 +11,13 @@ type Provider struct {
 }
 
 var (
+	ProviderDiscord = Provider{
+		"discord",
+		"https://discordapp.com/api/oauth2/authorize",
+		"https://discordapp.com/api/oauth2/token",
+		"https://discordapp.com/api/users/@me",
+		"identify",
+		"username",
+		"@",
+	}
 )
