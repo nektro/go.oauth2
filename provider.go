@@ -20,4 +20,13 @@ var (
 		"username",
 		"@",
 	}
+	ProviderReddit = Provider{
+		"reddit",
+		"https://old.reddit.com/api/v1/authorize",
+		"https://old.reddit.com/api/v1/access_token",
+		"https://oauth.reddit.com/api/v1/me",
+		"identity",
+		"name",
+		"u/",
+	}
 )
