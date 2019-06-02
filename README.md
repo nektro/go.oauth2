@@ -7,3 +7,11 @@
 HTTP function handlers to easily add OAuth2 client support to your Go application
 
 [![buymeacoffee](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/nektro)
+
+## Installing
+```
+$ go get -u github.com/nektro/go.oauth2
+```
+
+## License
+MIT
