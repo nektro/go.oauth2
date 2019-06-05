@@ -7,8 +7,8 @@ import (
 	"net/url"
 	"strings"
 
-	"github.com/nektro/go-util/util"
 	. "github.com/nektro/go-util/alias"
+	. "github.com/nektro/go-util/util"
 )
 
 func HandleOAuthLogin(isLoggedIn func(*http.Request) bool, doneURL string, idp Provider, appID string) http.HandlerFunc {
@@ -19,7 +19,7 @@ func HandleOAuthLogin(isLoggedIn func(*http.Request) bool, doneURL string, idp P
 			urlR, _ := url.Parse(idp.AuthorizeURL)
 			parameters := url.Values{}
 			parameters.Add("client_id", appID)
-			parameters.Add("redirect_uri", util.FullHost(r)+"/callback")
+			parameters.Add("redirect_uri", FullHost(r)+"/callback")
 			parameters.Add("response_type", "code")
 			parameters.Add("scope", idp.Scope)
 			parameters.Add("duration", "temporary")
@@ -43,7 +43,7 @@ func HandleOAuthCallback(idp Provider, appID, appSecret string, saveInfo func(ht
 		parameters.Add("client_secret", appSecret)
 		parameters.Add("grant_type", "authorization_code")
 		parameters.Add("code", string(code))
-		parameters.Add("redirect_uri", util.FullHost(r)+"/callback")
+		parameters.Add("redirect_uri", FullHost(r)+"/callback")
 		parameters.Add("state", "none")
 
 		urlR, _ := url.Parse(idp.TokenURL)
@@ -53,7 +53,7 @@ func HandleOAuthCallback(idp Provider, appID, appSecret string, saveInfo func(ht
 		req.Header.Set("Authorization", "Basic "+base64.StdEncoding.EncodeToString([]byte(appID+":"+appSecret)))
 		req.Header.Set("Accept", "application/json")
 
-		body := util.DoHttpRequest(req)
+		body := DoHttpRequest(req)
 		var resp map[string]interface{}
 		json.Unmarshal(body, &resp)
 		at := resp["access_token"]
@@ -63,7 +63,7 @@ func HandleOAuthCallback(idp Provider, appID, appSecret string, saveInfo func(ht
 		req2.Header.Set("User-Agent", "nektro/andesite")
 		req2.Header.Set("Authorization", "Bearer "+at.(string))
 
-		body2 := util.DoHttpRequest(req2)
+		body2 := DoHttpRequest(req2)
 		var respMe map[string]interface{}
 		json.Unmarshal(body2, &respMe)
 		_id := F("%v", respMe["id"])
