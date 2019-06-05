@@ -5,10 +5,10 @@ import (
 	"encoding/json"
 	"net/http"
 	"net/url"
-	"strconv"
 	"strings"
 
 	"github.com/nektro/go-util/util"
+	. "github.com/nektro/go-util/alias"
 )
 
 func HandleOAuthLogin(isLoggedIn func(*http.Request) bool, doneURL string, idp Provider, appID string) http.HandlerFunc {
@@ -66,19 +66,11 @@ func HandleOAuthCallback(idp Provider, appID, appSecret string, saveInfo func(ht
 		body2 := util.DoHttpRequest(req2)
 		var respMe map[string]interface{}
 		json.Unmarshal(body2, &respMe)
-		_id := fixID(respMe["id"])
-		_name := respMe[idp.NameProp].(string)
+		_id := F("%v", respMe["id"])
+		_name := F("%v", respMe[idp.NameProp])
 		saveInfo(w, r, idp.ID, _id, _name)
 
 		w.Header().Add("Location", doneURL)
 		w.WriteHeader(http.StatusMovedPermanently)
 	}
-}
-
-func fixID(id interface{}) string {
-	switch id.(type) {
-	case float64:
-		return strconv.Itoa(int(id.(float64)))
-	}
-	return id.(string)
 }
