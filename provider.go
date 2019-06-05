@@ -1,13 +1,13 @@
 package oauth2
 
 type Provider struct {
-	ID           string
-	AuthorizeURL string
-	TokenURL     string
-	MeURL        string
-	Scope        string
-	NameProp     string
-	NamePrefix   string
+	ID           string `json:"id"`
+	AuthorizeURL string `json:"authorize_url"`
+	TokenURL     string `json:"token_url"`
+	MeURL        string `json:"me_url"`
+	Scope        string `json:"scope"`
+	NameProp     string `json:"name_prop"`
+	NamePrefix   string `json:"name_prefix"`
 }
 
 var (
