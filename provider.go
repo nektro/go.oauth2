@@ -69,15 +69,11 @@ var (
 
 var (
 	ProviderIDMap = map[string]Provider{
-		"amazon":    ProviderAmazon,
 		"discord":   ProviderDiscord,
 		"facebook":  ProviderFacebook,
 		"github":    ProviderGitHub,
 		"google":    ProviderGoogle,
 		"microsoft": ProviderMicrosoft,
 		"reddit":    ProviderReddit,
-		"stripe":    ProviderStripe,
-		"twitch":    ProviderTwitch,
-		"twitter":   ProviderTwitter,
 	}
 )
