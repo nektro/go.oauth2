@@ -31,7 +31,7 @@ func HandleOAuthLogin(isLoggedIn func(*http.Request) bool, doneURL string, idp P
 	}
 }
 
-func HandleOAuthCallback(idp Provider, appID, appSecret string, saveInfo func(http.ResponseWriter, *http.Request, string, string, string), doneURL string) http.HandlerFunc {
+func HandleOAuthCallback(idp Provider, appID, appSecret string, saveInfo func(http.ResponseWriter, *http.Request, string, string, string, map[string]interface{}), doneURL string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		code := r.URL.Query().Get("code")
 		if len(code) == 0 {
@@ -68,7 +68,7 @@ func HandleOAuthCallback(idp Provider, appID, appSecret string, saveInfo func(ht
 		json.Unmarshal(body2, &respMe)
 		_id := F("%v", respMe["id"])
 		_name := F("%v", respMe[idp.NameProp])
-		saveInfo(w, r, idp.ID, _id, _name)
+		saveInfo(w, r, idp.ID, _id, _name, resp)
 
 		w.Header().Add("Location", doneURL)
 		w.WriteHeader(http.StatusMovedPermanently)
