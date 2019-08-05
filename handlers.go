@@ -3,6 +3,7 @@ package oauth2
 import (
 	"encoding/base64"
 	"encoding/json"
+	"fmt"
 	"net/http"
 	"net/url"
 	"strings"
@@ -57,6 +58,12 @@ func HandleOAuthCallback(idp Provider, appID, appSecret string, saveInfo func(ht
 		var resp map[string]interface{}
 		json.Unmarshal(body, &resp)
 		at := resp["access_token"]
+		if at == nil {
+			b, _ := json.Marshal(resp)
+			fmt.Fprintln(w, "Identity Provider Login Error!")
+			fmt.Fprintln(w, string(b))
+			return
+		}
 
 		urlR2, _ := url.Parse(idp.MeURL)
 		req2, _ := http.NewRequest("GET", urlR2.String(), strings.NewReader(""))
