@@ -28,7 +28,7 @@ func HandleOAuthLogin(isLoggedIn func(*http.Request) bool, doneURL string, idp P
 			urlR.RawQuery = parameters.Encode()
 			w.Header().Add("Location", urlR.String())
 		}
-		w.WriteHeader(http.StatusMovedPermanently)
+		w.WriteHeader(http.StatusFound)
 	}
 }
 
@@ -78,6 +78,6 @@ func HandleOAuthCallback(idp Provider, appID, appSecret string, saveInfo func(ht
 		saveInfo(w, r, idp.ID, _id, _name, resp)
 
 		w.Header().Add("Location", doneURL)
-		w.WriteHeader(http.StatusMovedPermanently)
+		w.WriteHeader(http.StatusFound)
 	}
 }
