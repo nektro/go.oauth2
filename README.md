@@ -24,6 +24,18 @@ type AppConf struct {
 - `"secret"` is for your Client Secret.
 - Extra 1, 2, and 3 are filler spots for misc. info your app may need, such as Discord's Bot Token for example.
 
+## Creating Credentials
+In order to use an app that uses this library, you will need to create an app on your Identity Provider of choice. Below, you will see a table of the supported Identity Providers and a link to the respective dashboards where you can go to create your [app](#appconf-schema) and obtain your App ID and App Secret.
+
+| Identity Provider | Short Code | Developer Dashboard |
+| --- | --- | --- |
+| Discord | `discord` | https://discordapp.com/developers/applications/ |
+| Reddit | `reddit` | https://www.reddit.com/prefs/apps |
+| GitHub | `github` | https://github.com/settings/developers |
+| Google | `google` | https://console.developers.google.com |
+| Facebook | `facebook` | https://developers.facebook.com/apps/ |
+| Microsoft | `microsoft` | https://apps.dev.microsoft.com/ |
+
 ## Installing
 ```
 $ go get -u github.com/nektro/go.oauth2
