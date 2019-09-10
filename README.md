@@ -61,5 +61,21 @@ type Provider struct {
 - `"name_prop"` is the JSON key of current user's real name in the response of fetching `"me_url"`.
 - `"name_prefix"` is any prefix to put in front of all names, this is typically `@`, `u/`, blank, etc.
 
+## `Provider` Details for Self-Hosted Services
+
+### Custom Gitea
+https://gitea.io/en-us/
+```json
+{
+	"for": "gitea",
+	"authorize_url": "https://gitea.example.com/login/oauth/authorize",
+	"token_url": "https://gitea.example.com/login/oauth/access_token",
+	"me_url": "https://gitea.example.com/api/v1/user",
+	"scope": "",
+	"name_prop": "username",
+	"name_prefix": "@"
+}
+```
+
 ## License
 MIT
