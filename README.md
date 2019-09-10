@@ -41,5 +41,25 @@ In order to use an app that uses this library, you will need to create an app on
 $ go get -u github.com/nektro/go.oauth2
 ```
 
+## `Provider` Schema
+```go
+type Provider struct {
+	ID           string `json:"id"`
+	AuthorizeURL string `json:"authorize_url"`
+	TokenURL     string `json:"token_url"`
+	MeURL        string `json:"me_url"`
+	Scope        string `json:"scope"`
+	NameProp     string `json:"name_prop"`
+	NamePrefix   string `json:"name_prefix"`
+}
+```
+- `"id"` is the short-code this is creating.
+- `"authorize_url"` is the OAuth2 authorization URL.
+- `"token_url"` is the OAuth2 token URL.
+- `"me_url"` is the service's URL to get the currently logged in user.
+- `"scope"` is the OAuth2 scope required to be able to get the currently logged in user.
+- `"name_prop"` is the JSON key of current user's real name in the response of fetching `"me_url"`.
+- `"name_prefix"` is any prefix to put in front of all names, this is typically `@`, `u/`, blank, etc.
+
 ## License
 MIT
