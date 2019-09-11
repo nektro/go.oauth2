@@ -24,7 +24,7 @@ func HandleOAuthLogin(isLoggedIn func(*http.Request) bool, doneURL string, idp P
 			parameters.Add("response_type", "code")
 			parameters.Add("scope", idp.Scope)
 			parameters.Add("duration", "temporary")
-			parameters.Add("state", "none")
+			parameters.Add("state", idp.ID)
 			urlR.RawQuery = parameters.Encode()
 			w.Header().Add("Location", urlR.String())
 		}
@@ -79,5 +79,31 @@ func HandleOAuthCallback(idp Provider, appID, appSecret string, saveInfo func(ht
 
 		w.Header().Add("Location", doneURL)
 		w.WriteHeader(http.StatusFound)
+	}
+}
+
+func HandleMultiOAuthLogin(isLoggedIn func(*http.Request) bool, doneURL string, clients []AppConf) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		with := r.URL.Query().Get("with")
+		if len(with) == 0 {
+			HandleOAuthLogin(isLoggedIn, doneURL, ProviderIDMap[clients[0].For], clients[0].ID)(w, r)
+		} else {
+			for _, item := range clients {
+				if item.For == with {
+					HandleOAuthLogin(isLoggedIn, doneURL, ProviderIDMap[item.For], item.ID)(w, r)
+				}
+			}
+		}
+	}
+}
+
+func HandleMultiOAuthCallback(doneURL string, clients []AppConf, saveInfo func(http.ResponseWriter, *http.Request, string, string, string, map[string]interface{})) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		idp := r.URL.Query().Get("state")
+		for _, item := range clients {
+			if item.For == idp {
+				HandleOAuthCallback(ProviderIDMap[idp], item.ID, item.Secret, saveInfo, doneURL)(w, r)
+			}
+		}
 	}
 }
