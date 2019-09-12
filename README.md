@@ -78,5 +78,19 @@ https://gitea.io/en-us/
 }
 ```
 
+### Custom GitLab Provider
+https://gitlab.com/
+```json
+{
+	"for": "gitlab",
+	"authorize_url": "https://gitlab.com/oauth/authorize",
+	"token_url": "https://gitlab.com/oauth/token",
+	"me_url": "https://gitlab.com/api/v4/user",
+	"scope": "read_user",
+	"name_prop": "username",
+	"name_prefix": "@"
+}
+```
+
 ## License
 MIT
