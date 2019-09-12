@@ -78,6 +78,15 @@ var (
 
 var (
 	ProviderIDMap = map[string]Provider{
+		"battle.net": Provider{
+			"battle.net",
+			"https://us.battle.net/oauth/authorize",
+			"https://us.battle.net/oauth/token",
+			"https://us.battle.net/oauth/userinfo",
+			"openid",
+			"battletag",
+			"",
+		},
 		"discord":  ProviderDiscord,
 		"facebook": ProviderFacebook,
 		"github": ProviderGitHub,
