@@ -64,7 +64,7 @@ type Provider struct {
 
 ## `Provider` Details for Self-Hosted Services
 
-### Custom Gitea
+### Custom Gitea Provider
 https://gitea.io/en-us/
 ```json
 {
