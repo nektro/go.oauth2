@@ -30,11 +30,11 @@ In order to use an app that uses this library, you will need to create an app on
 | Identity Provider | Short Code | Developer Dashboard |
 | --- | --- | --- |
 | Discord | `discord` | https://discordapp.com/developers/applications/ |
-| Reddit | `reddit` | https://www.reddit.com/prefs/apps |
+| Facebook | `facebook` | https://developers.facebook.com/apps/ |
 | GitHub | `github` | https://github.com/settings/developers |
 | Google | `google` | https://console.developers.google.com |
-| Facebook | `facebook` | https://developers.facebook.com/apps/ |
 | Microsoft | `microsoft` | https://apps.dev.microsoft.com/ |
+| Reddit | `reddit` | https://www.reddit.com/prefs/apps |
 
 ## Installing
 ```
