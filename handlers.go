@@ -6,10 +6,11 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"strconv"
 	"strings"
 
-	. "github.com/nektro/go-util/alias"
 	. "github.com/nektro/go-util/util"
+	"github.com/nektro/go-util/alias"
 )
 
 func HandleOAuthLogin(isLoggedIn func(*http.Request) bool, doneURL string, idp Provider, appID string) http.HandlerFunc {
@@ -73,13 +74,23 @@ func HandleOAuthCallback(idp Provider, appID, appSecret string, saveInfo func(ht
 		body2 := DoHttpRequest(req2)
 		var respMe map[string]interface{}
 		json.Unmarshal(body2, &respMe)
-		_id := F("%v", respMe["id"])
-		_name := F("%v", respMe[idp.NameProp])
+		_id := fixID(respMe["id"])
+		_name := respMe[idp.NameProp].(string)
 		saveInfo(w, r, idp.ID, _id, _name, resp)
 
 		w.Header().Add("Location", doneURL)
 		w.WriteHeader(http.StatusFound)
 	}
+}
+
+func fixID(id interface{}) string {
+	switch id.(type) {
+	case string:
+		return id.(string)
+	case float64:
+		return strconv.FormatFloat(id.(float64), 'f', -1, 64)
+	}
+	return alias.F("%v", id)
 }
 
 func HandleMultiOAuthLogin(isLoggedIn func(*http.Request) bool, doneURL string, clients []AppConf) http.HandlerFunc {
