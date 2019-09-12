@@ -60,9 +60,8 @@ func HandleOAuthCallback(idp Provider, appID, appSecret string, saveInfo func(ht
 		json.Unmarshal(body, &resp)
 		at := resp["access_token"]
 		if at == nil {
-			b, _ := json.Marshal(resp)
 			fmt.Fprintln(w, "Identity Provider Login Error!")
-			fmt.Fprintln(w, string(b))
+			fmt.Fprintln(w, string(body))
 			return
 		}
 
