@@ -67,7 +67,7 @@ func HandleOAuthCallback(idp Provider, appID, appSecret string, saveInfo func(ht
 
 		urlR2, _ := url.Parse(idp.MeURL)
 		req2, _ := http.NewRequest("GET", urlR2.String(), strings.NewReader(""))
-		req2.Header.Set("User-Agent", "nektro/andesite")
+		req2.Header.Set("User-Agent", "nektro/go.auth2")
 		req2.Header.Set("Authorization", "Bearer "+at.(string))
 		req2.Header.Set("Accept", "application/json")
 
