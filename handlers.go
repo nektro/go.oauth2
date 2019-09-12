@@ -70,6 +70,7 @@ func HandleOAuthCallback(idp Provider, appID, appSecret string, saveInfo func(ht
 		req2, _ := http.NewRequest("GET", urlR2.String(), strings.NewReader(""))
 		req2.Header.Set("User-Agent", "nektro/andesite")
 		req2.Header.Set("Authorization", "Bearer "+at.(string))
+		req2.Header.Set("Accept", "application/json")
 
 		body2 := util.DoHttpRequest(req2)
 		var respMe map[string]interface{}
