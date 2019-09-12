@@ -32,6 +32,7 @@ In order to use an app that uses this library, you will need to create an app on
 | Discord | `discord` | https://discordapp.com/developers/applications/ |
 | Facebook | `facebook` | https://developers.facebook.com/apps/ |
 | GitHub | `github` | https://github.com/settings/developers |
+| GitLab | `gitlab.com` | https://gitlab.com/profile/applications |
 | Google | `google` | https://console.developers.google.com |
 | Microsoft | `microsoft` | https://apps.dev.microsoft.com/ |
 | Reddit | `reddit` | https://www.reddit.com/prefs/apps |
