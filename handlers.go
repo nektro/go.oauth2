@@ -89,6 +89,8 @@ func fixID(id interface{}) string {
 		return id.(string)
 	case float64:
 		return strconv.FormatFloat(id.(float64), 'f', -1, 64)
+	case int:
+		return strconv.Itoa(id.(int))
 	}
 	return alias.F("%v", id)
 }
