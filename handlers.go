@@ -13,6 +13,8 @@ import (
 	"github.com/nektro/go-util/util"
 )
 
+type SaveInfoFunc func(http.ResponseWriter, *http.Request, string, string, string, map[string]interface{})
+
 func HandleOAuthLogin(isLoggedIn func(*http.Request) bool, doneURL string, idp Provider, appID string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		if isLoggedIn(r) {
@@ -33,7 +35,7 @@ func HandleOAuthLogin(isLoggedIn func(*http.Request) bool, doneURL string, idp P
 	}
 }
 
-func HandleOAuthCallback(idp Provider, appID, appSecret string, saveInfo func(http.ResponseWriter, *http.Request, string, string, string, map[string]interface{}), doneURL string) http.HandlerFunc {
+func HandleOAuthCallback(idp Provider, appID, appSecret string, saveInfo SaveInfoFunc, doneURL string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		code := r.URL.Query().Get("code")
 		if len(code) == 0 {
@@ -110,7 +112,7 @@ func HandleMultiOAuthLogin(isLoggedIn func(*http.Request) bool, doneURL string, 
 	}
 }
 
-func HandleMultiOAuthCallback(doneURL string, clients []AppConf, saveInfo func(http.ResponseWriter, *http.Request, string, string, string, map[string]interface{})) http.HandlerFunc {
+func HandleMultiOAuthCallback(doneURL string, clients []AppConf, saveInfo SaveInfoFunc) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		idp := r.URL.Query().Get("state")
 		for _, item := range clients {
