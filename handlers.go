@@ -9,7 +9,6 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/nektro/go-util/alias"
 	"github.com/nektro/go-util/util"
 )
 
@@ -94,7 +93,7 @@ func fixID(id interface{}) string {
 	case int:
 		return strconv.Itoa(id.(int))
 	}
-	return alias.F("%v", id)
+	return fmt.Sprintf("%v", id)
 }
 
 func HandleMultiOAuthLogin(isLoggedIn func(*http.Request) bool, doneURL string, clients []AppConf) http.HandlerFunc {
