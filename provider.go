@@ -20,15 +20,6 @@ type AppConf struct {
 }
 
 var (
-	ProviderGitHub = Provider{
-		"github",
-		"https://github.com/login/oauth/authorize",
-		"https://github.com/login/oauth/access_token",
-		"https://api.github.com/user",
-		"read:user",
-		"login",
-		"@",
-	}
 	ProviderGoogle = Provider{
 		"google",
 		"https://accounts.google.com/o/oauth2/v2/auth",
@@ -69,7 +60,6 @@ var (
 			"battletag",
 			"",
 		},
-		"github": ProviderGitHub,
 		"discord": Provider{
 			"discord",
 			"https://discordapp.com/api/oauth2/authorize",
@@ -87,6 +77,15 @@ var (
 			"",
 			"name",
 			"",
+		},
+		"github": Provider{
+			"github",
+			"https://github.com/login/oauth/authorize",
+			"https://github.com/login/oauth/access_token",
+			"https://api.github.com/user",
+			"read:user",
+			"login",
+			"@",
 		},
 		"gitlab.com": Provider{
 			"gitlab.com",
