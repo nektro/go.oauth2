@@ -20,15 +20,6 @@ type AppConf struct {
 }
 
 var (
-	ProviderGoogle = Provider{
-		"google",
-		"https://accounts.google.com/o/oauth2/v2/auth",
-		"https://www.googleapis.com/oauth2/v4/token",
-		"https://www.googleapis.com/oauth2/v1/userinfo?alt=json",
-		"profile",
-		"name",
-		"",
-	}
 	ProviderMicrosoft = Provider{
 		"microsoft",
 		"https://login.microsoftonline.com/common/oauth2/v2.0/authorize",
@@ -96,8 +87,16 @@ var (
 			"username",
 			"@",
 		},
-		"google":    ProviderGoogle,
 		"microsoft": ProviderMicrosoft,
 		"reddit":    ProviderReddit,
+		"google": Provider{
+			"google",
+			"https://accounts.google.com/o/oauth2/v2/auth",
+			"https://www.googleapis.com/oauth2/v4/token",
+			"https://www.googleapis.com/oauth2/v1/userinfo?alt=json",
+			"profile",
+			"name",
+			"",
+		},
 	}
 )
