@@ -20,15 +20,6 @@ type AppConf struct {
 }
 
 var (
-	ProviderMicrosoft = Provider{
-		"microsoft",
-		"https://login.microsoftonline.com/common/oauth2/v2.0/authorize",
-		"https://login.microsoftonline.com/common/oauth2/v2.0/token",
-		"https://graph.microsoft.com/v1.0/me/",
-		"https://graph.microsoft.com/user.read",
-		"displayName",
-		"",
-	}
 	ProviderReddit = Provider{
 		"reddit",
 		"https://old.reddit.com/api/v1/authorize",
@@ -87,7 +78,6 @@ var (
 			"username",
 			"@",
 		},
-		"microsoft": ProviderMicrosoft,
 		"reddit":    ProviderReddit,
 		"google": Provider{
 			"google",
@@ -96,6 +86,15 @@ var (
 			"https://www.googleapis.com/oauth2/v1/userinfo?alt=json",
 			"profile",
 			"name",
+			"",
+		},
+		"microsoft": Provider{
+			"microsoft",
+			"https://login.microsoftonline.com/common/oauth2/v2.0/authorize",
+			"https://login.microsoftonline.com/common/oauth2/v2.0/token",
+			"https://graph.microsoft.com/v1.0/me/",
+			"https://graph.microsoft.com/user.read",
+			"displayName",
 			"",
 		},
 	}
