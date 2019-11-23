@@ -20,15 +20,6 @@ type AppConf struct {
 }
 
 var (
-	ProviderDiscord = Provider{
-		"discord",
-		"https://discordapp.com/api/oauth2/authorize",
-		"https://discordapp.com/api/oauth2/token",
-		"https://discordapp.com/api/users/@me",
-		"identify",
-		"username",
-		"@",
-	}
 	ProviderFacebook = Provider{
 		"facebook",
 		"https://graph.facebook.com/oauth/authorize",
@@ -87,9 +78,17 @@ var (
 			"battletag",
 			"",
 		},
-		"discord":  ProviderDiscord,
 		"facebook": ProviderFacebook,
 		"github": ProviderGitHub,
+		"discord": Provider{
+			"discord",
+			"https://discordapp.com/api/oauth2/authorize",
+			"https://discordapp.com/api/oauth2/token",
+			"https://discordapp.com/api/users/@me",
+			"identify",
+			"username",
+			"@",
+		},
 		"gitlab.com": Provider{
 			"gitlab.com",
 			"https://gitlab.com/oauth/authorize",
