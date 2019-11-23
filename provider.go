@@ -20,15 +20,6 @@ type AppConf struct {
 }
 
 var (
-	ProviderFacebook = Provider{
-		"facebook",
-		"https://graph.facebook.com/oauth/authorize",
-		"https://graph.facebook.com/oauth/access_token",
-		"https://graph.facebook.com/me",
-		"",
-		"name",
-		"",
-	}
 	ProviderGitHub = Provider{
 		"github",
 		"https://github.com/login/oauth/authorize",
@@ -78,7 +69,6 @@ var (
 			"battletag",
 			"",
 		},
-		"facebook": ProviderFacebook,
 		"github": ProviderGitHub,
 		"discord": Provider{
 			"discord",
@@ -88,6 +78,15 @@ var (
 			"identify",
 			"username",
 			"@",
+		},
+		"facebook": Provider{
+			"facebook",
+			"https://graph.facebook.com/oauth/authorize",
+			"https://graph.facebook.com/oauth/access_token",
+			"https://graph.facebook.com/me",
+			"",
+			"name",
+			"",
 		},
 		"gitlab.com": Provider{
 			"gitlab.com",
