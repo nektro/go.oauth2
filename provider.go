@@ -20,18 +20,6 @@ type AppConf struct {
 }
 
 var (
-	ProviderReddit = Provider{
-		"reddit",
-		"https://old.reddit.com/api/v1/authorize",
-		"https://old.reddit.com/api/v1/access_token",
-		"https://oauth.reddit.com/api/v1/me",
-		"identity",
-		"name",
-		"u/",
-	}
-)
-
-var (
 	ProviderIDMap = map[string]Provider{
 		"battle.net": Provider{
 			"battle.net",
@@ -78,7 +66,6 @@ var (
 			"username",
 			"@",
 		},
-		"reddit":    ProviderReddit,
 		"google": Provider{
 			"google",
 			"https://accounts.google.com/o/oauth2/v2/auth",
@@ -96,6 +83,15 @@ var (
 			"https://graph.microsoft.com/user.read",
 			"displayName",
 			"",
+		},
+		"reddit": Provider{
+			"reddit",
+			"https://old.reddit.com/api/v1/authorize",
+			"https://old.reddit.com/api/v1/access_token",
+			"https://oauth.reddit.com/api/v1/me",
+			"identity",
+			"name",
+			"u/",
 		},
 	}
 )
