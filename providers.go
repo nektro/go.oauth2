@@ -2,7 +2,7 @@ package oauth2
 
 var (
 	ProviderIDMap = map[string]Provider{
-		"amazon": Provider{ // "id" field missing, "user_id" used instead
+		"amazon": Provider{
 			ID:           "amazon",
 			AuthorizeURL: "https://www.amazon.com/ap/oa",
 			TokenURL:     "https://api.amazon.com/auth/o2/token",
