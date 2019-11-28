@@ -66,6 +66,10 @@ func HandleOAuthCallback(idp Provider, appID, appSecret string, saveInfo SaveInf
 			return
 		}
 
+		if len(idp.IDProp) == 0 {
+			idp.IDProp = "id"
+		}
+
 		urlR2, _ := url.Parse(idp.MeURL)
 		req2, _ := http.NewRequest("GET", urlR2.String(), strings.NewReader(""))
 		req2.Header.Set("User-Agent", "nektro/go.auth2")
@@ -75,7 +79,7 @@ func HandleOAuthCallback(idp Provider, appID, appSecret string, saveInfo SaveInf
 		body2 := util.DoHttpRequest(req2)
 		var respMe map[string]interface{}
 		json.Unmarshal(body2, &respMe)
-		_id := fixID(respMe["id"])
+		_id := fixID(respMe[idp.IDProp])
 		_name := respMe[idp.NameProp].(string)
 		saveInfo(w, r, idp.ID, _id, _name, resp)
 
