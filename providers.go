@@ -2,6 +2,15 @@ package oauth2
 
 var (
 	ProviderIDMap = map[string]Provider{
+		"amazon": Provider{ // "id" field missing, "user_id" used instead
+			ID:           "amazon",
+			AuthorizeURL: "https://www.amazon.com/ap/oa",
+			TokenURL:     "https://api.amazon.com/auth/o2/token",
+			MeURL:        "https://api.amazon.com/user/profile",
+			Scope:        "profile",
+			NameProp:     "name",
+			IDProp:       "user_id",
+		},
 		"battle.net": Provider{
 			ID:           "battle.net",
 			AuthorizeURL: "https://us.battle.net/oauth/authorize",

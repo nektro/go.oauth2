@@ -29,6 +29,7 @@ In order to use an app that uses this library, you will need to create an app on
 
 | Identity Provider | Short Code | Developer Dashboard |
 | --- | --- | --- |
+| Amazon | `amazon` | https://developer.amazon.com/settings/console/securityprofile/overview.html |
 | Battle.net | `battle.net` | https://develop.battle.net/access/clients |
 | Discord | `discord` | https://discordapp.com/developers/applications/ |
 | Facebook | `facebook` | https://developers.facebook.com/apps/ |
