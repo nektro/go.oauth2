@@ -12,7 +12,7 @@ import (
 	"github.com/nektro/go-util/util"
 )
 
-type SaveInfoFunc func(http.ResponseWriter, *http.Request, string, string, string, map[string]interface{})
+type SaveInfoFunc func(req http.ResponseWriter, res *http.Request, provider string, id string, name string, resp map[string]interface{})
 
 func HandleOAuthLogin(isLoggedIn func(*http.Request) bool, doneURL string, idp Provider, appID string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
