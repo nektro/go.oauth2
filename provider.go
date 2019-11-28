@@ -10,12 +10,3 @@ type Provider struct {
 	NamePrefix   string `json:"name_prefix"`
 	IDProp       string `json:"id_prop"`
 }
-
-type AppConf struct {
-	For    string `json:"for"`
-	ID     string `json:"id"`
-	Secret string `json:"secret"`
-	Extra1 string `json:"extra_1"`
-	Extra2 string `json:"extra_2"`
-	Extra3 string `json:"extra_3"`
-}
