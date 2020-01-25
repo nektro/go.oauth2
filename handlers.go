@@ -55,7 +55,12 @@ func HandleOAuthCallback(idp Provider, appID, appSecret string, saveInfo SaveInf
 		req.Header.Set("Authorization", "Basic "+base64.StdEncoding.EncodeToString([]byte(appID+":"+appSecret)))
 		req.Header.Set("Accept", "application/json")
 
-		body := util.DoHttpRequest(req)
+		body, err := util.DoHttpFetch(req)
+		if err != nil {
+			fmt.Fprintln(w, "error:", "POST:", idp.TokenURL)
+			fmt.Fprintln(w, err.Error())
+			return
+		}
 		var resp map[string]interface{}
 		json.Unmarshal(body, &resp)
 		at := resp["access_token"]
@@ -74,7 +79,12 @@ func HandleOAuthCallback(idp Provider, appID, appSecret string, saveInfo SaveInf
 		req2.Header.Set("Authorization", "Bearer "+at.(string))
 		req2.Header.Set("Accept", "application/json")
 
-		body2 := util.DoHttpRequest(req2)
+		body2, err := util.DoHttpFetch(req2)
+		if err != nil {
+			fmt.Fprintln(w, "error:", "GET:", idp.MeURL)
+			fmt.Fprintln(w, err.Error())
+			return
+		}
 		var respMe map[string]interface{}
 		json.Unmarshal(body2, &respMe)
 		_id := fixID(respMe[idp.IDProp])
