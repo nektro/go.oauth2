@@ -2,10 +2,9 @@
 ![loc](https://sloc.xyz/github/nektro/go.oauth2)
 [![license](https://img.shields.io/github/license/nektro/go.oauth2.svg)](https://github.com/nektro/go.oauth2/blob/master/LICENSE)
 [![discord](https://img.shields.io/discord/551971034593755159.svg)](https://discord.gg/P6Y4zQC)
+[![paypal](https://img.shields.io/badge/donate-paypal-009cdf)](https://paypal.me/nektro)
 
 HTTP function handlers to easily add OAuth2 client support to your Go application
-
-[![buymeacoffee](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/nektro)
 
 ## `AppConf` Schema
 ```go
