@@ -3,6 +3,8 @@
 [![license](https://img.shields.io/github/license/nektro/go.oauth2.svg)](https://github.com/nektro/go.oauth2/blob/master/LICENSE)
 [![discord](https://img.shields.io/discord/551971034593755159.svg)](https://discord.gg/P6Y4zQC)
 [![paypal](https://img.shields.io/badge/donate-paypal-009cdf)](https://paypal.me/nektro)
+[![goreportcard](https://goreportcard.com/badge/github.com/nektro/go.oauth2)](https://goreportcard.com/report/github.com/nektro/go.oauth2)
+[![codefactor](https://www.codefactor.io/repository/github/nektro/go.oauth2/badge)](https://www.codefactor.io/repository/github/nektro/go.oauth2)
 
 HTTP function handlers to easily add OAuth2 client support to your Go application
 
