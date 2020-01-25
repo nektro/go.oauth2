@@ -1,5 +1,5 @@
 # go.oauth2
-![loc](https://tokei.rs/b1/github/nektro/go.oauth2)
+![loc](https://sloc.xyz/github/nektro/go.oauth2)
 [![license](https://img.shields.io/github/license/nektro/go.oauth2.svg)](https://github.com/nektro/go.oauth2/blob/master/LICENSE)
 [![discord](https://img.shields.io/discord/551971034593755159.svg)](https://discord.gg/P6Y4zQC)
 [![sourcegraph](https://sourcegraph.com/github.com/nektro/go.oauth2/-/badge.svg)](https://sourcegraph.com/github.com/gorilla/sessions?badge)
