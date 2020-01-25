@@ -49,8 +49,7 @@ func HandleOAuthCallback(idp Provider, appID, appSecret string, saveInfo SaveInf
 		parameters.Add("redirect_uri", util.FullHost(r)+"/callback")
 		parameters.Add("state", "none")
 
-		urlR, _ := url.Parse(idp.TokenURL)
-		req, _ := http.NewRequest("POST", urlR.String(), strings.NewReader(parameters.Encode()))
+		req, _ := http.NewRequest("POST", idp.TokenURL, strings.NewReader(parameters.Encode()))
 		req.Header.Set("User-Agent", "nektro/go-util")
 		req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
 		req.Header.Set("Authorization", "Basic "+base64.StdEncoding.EncodeToString([]byte(appID+":"+appSecret)))
@@ -70,8 +69,7 @@ func HandleOAuthCallback(idp Provider, appID, appSecret string, saveInfo SaveInf
 			idp.IDProp = "id"
 		}
 
-		urlR2, _ := url.Parse(idp.MeURL)
-		req2, _ := http.NewRequest("GET", urlR2.String(), strings.NewReader(""))
+		req2, _ := http.NewRequest("GET", idp.MeURL, strings.NewReader(""))
 		req2.Header.Set("User-Agent", "nektro/go.auth2")
 		req2.Header.Set("Authorization", "Bearer "+at.(string))
 		req2.Header.Set("Accept", "application/json")
