@@ -4,11 +4,13 @@ import (
 	"encoding/base64"
 	"encoding/json"
 	"fmt"
+	"io/ioutil"
 	"net/http"
 	"net/url"
 	"strconv"
 	"strings"
 
+	"github.com/aymerick/raymond"
 	"github.com/nektro/go-util/util"
 )
 
@@ -112,7 +114,22 @@ func HandleMultiOAuthLogin(isLoggedIn func(*http.Request) bool, doneURL string, 
 	return func(w http.ResponseWriter, r *http.Request) {
 		with := r.URL.Query().Get("with")
 		if len(with) == 0 {
-			HandleOAuthLogin(isLoggedIn, doneURL, ProviderIDMap[clients[0].For], clients[0].ID)(w, r)
+			reader, err := mfs.Open("/selector.hbs")
+			if err != nil {
+				fmt.Fprintln(w, "error:", err)
+				return
+			}
+			bytes, err := ioutil.ReadAll(reader)
+			if err != nil {
+				fmt.Fprintln(w, "error:", err)
+				return
+			}
+			template := string(bytes)
+			result, _ := raymond.Render(template, map[string]interface{}{
+				"clients": clients,
+			})
+			fmt.Fprintln(w, result)
+
 		} else {
 			for _, item := range clients {
 				if item.For == with {

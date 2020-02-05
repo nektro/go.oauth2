@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>{{title}}</title>
+        <!---->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.7.5/semantic.min.css" integrity="sha256-S4n5rcKkPwT9YZGXPue8OorJ7GCPxBA5o/Z0ALWXyHs=" crossorigin="anonymous" />
+        <link rel="stylesheet" href="./style.css">
+        <!---->
+        <style>
+            body > div { margin: 1em; }
+            form .ui.button { margin: 1em 0; }
+        </style>
+    </head>
+    <body class="page-login-oauth2">
+        <div class="ui main menu">
+            <div class="right item">Powered by&nbsp;<a href="https://github.com/nektro/go.oauth2" target="_blank">GoOAuth2</a></div>
+        </div>
+        <div>
+            <form action="./login" method="get">
+                <fieldset>
+                    <legend>Select a Provider:</legend>
+                    {{#each clients}}
+                    <div>
+                        <input type="radio" name="with" value="{{For}}" id="p-{{For}}">
+                        <label for="p-{{For}}">{{For}}</label>
+                    </div>
+                    {{/each}}
+                </fieldset>
+                <button class="ui button" type="submit">Login</button>                
+            </form>
+        </div>
+    </body>
+</html>
