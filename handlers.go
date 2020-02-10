@@ -114,6 +114,10 @@ func HandleMultiOAuthLogin(isLoggedIn func(*http.Request) bool, doneURL string, 
 	return func(w http.ResponseWriter, r *http.Request) {
 		with := r.URL.Query().Get("with")
 		if len(with) == 0 {
+			if len(clients) == 0 {
+				http.NotFound(w, r)
+				return
+			}
 			if len(clients) == 1 {
 				HandleOAuthLogin(isLoggedIn, doneURL, ProviderIDMap[clients[0].For], clients[0].ID)(w, r)
 				return
