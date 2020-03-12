@@ -122,6 +122,14 @@ func HandleMultiOAuthLogin(isLoggedIn func(*http.Request) bool, doneURL string, 
 				HandleOAuthLogin(isLoggedIn, doneURL, ProviderIDMap[clients[0].For], clients[0].ID)(w, r)
 				return
 			}
+			if len(doa) > 0 {
+				for _, item := range clients {
+					if item.For == doa {
+						HandleOAuthLogin(isLoggedIn, doneURL, ProviderIDMap[item.For], item.ID)(w, r)
+						return
+					}
+				}
+			}
 			reader, err := mfs.Open("/selector.hbs")
 			if err != nil {
 				fmt.Fprintln(w, "error:", err)
