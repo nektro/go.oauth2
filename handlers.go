@@ -116,6 +116,7 @@ func HandleMultiOAuthLogin(isLoggedIn func(*http.Request) bool, doneURL string, 
 		if len(with) == 0 {
 			if len(clients) == 0 {
 				http.NotFound(w, r)
+				fmt.Fprintln(w, "No OAuth2 App configurations found.")
 				return
 			}
 			if len(clients) == 1 {
