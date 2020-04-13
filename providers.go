@@ -10,6 +10,7 @@ var (
 			Scope:        "profile",
 			NameProp:     "name",
 			IDProp:       "user_id",
+			Logo:         "https://unpkg.com/simple-icons@latest/icons/amazon.svg",
 		},
 		"battle.net": Provider{
 			ID:           "battle.net",
@@ -18,6 +19,7 @@ var (
 			MeURL:        "https://us.battle.net/oauth/userinfo",
 			Scope:        "openid",
 			NameProp:     "battletag",
+			Logo:         "https://unpkg.com/simple-icons@latest/icons/battle-dot-net.svg",
 		},
 		"discord": Provider{
 			ID:           "discord",
@@ -27,6 +29,7 @@ var (
 			Scope:        "identify",
 			NameProp:     "username",
 			NamePrefix:   "@",
+			Logo:         "https://unpkg.com/simple-icons@latest/icons/discord.svg",
 		},
 		"facebook": Provider{
 			ID:           "facebook",
@@ -34,6 +37,7 @@ var (
 			TokenURL:     "https://graph.facebook.com/oauth/access_token",
 			MeURL:        "https://graph.facebook.com/me",
 			NameProp:     "name",
+			Logo:         "https://unpkg.com/simple-icons@latest/icons/facebook.svg",
 		},
 		"github": Provider{
 			ID:           "github",
@@ -43,6 +47,7 @@ var (
 			Scope:        "read:user",
 			NameProp:     "login",
 			NamePrefix:   "@",
+			Logo:         "https://unpkg.com/simple-icons@latest/icons/github.svg",
 		},
 		"gitlab.com": Provider{
 			ID:           "gitlab.com",
@@ -52,6 +57,7 @@ var (
 			Scope:        "read_user",
 			NameProp:     "username",
 			NamePrefix:   "@",
+			Logo:         "https://unpkg.com/simple-icons@latest/icons/gitlab.svg",
 		},
 		"google": Provider{
 			ID:           "google",
@@ -60,6 +66,7 @@ var (
 			MeURL:        "https://www.googleapis.com/oauth2/v1/userinfo?alt=json",
 			Scope:        "profile",
 			NameProp:     "name",
+			Logo:         "https://unpkg.com/simple-icons@latest/icons/google.svg",
 		},
 		"microsoft": Provider{
 			ID:           "microsoft",
@@ -68,6 +75,7 @@ var (
 			MeURL:        "https://graph.microsoft.com/v1.0/me/",
 			Scope:        "https://graph.microsoft.com/user.read",
 			NameProp:     "displayName",
+			Logo:         "https://unpkg.com/simple-icons@latest/icons/microsoft.svg",
 		},
 		"reddit": Provider{
 			ID:           "reddit",
@@ -77,6 +85,7 @@ var (
 			Scope:        "identity",
 			NameProp:     "name",
 			NamePrefix:   "u/",
+			Logo:         "https://unpkg.com/simple-icons@latest/icons/reddit.svg",
 		},
 	}
 )
