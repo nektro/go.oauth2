@@ -91,5 +91,7 @@ The full list of customizable provider are as follows:
 | --- | --- | --- |
 | Gitea | `gitea` | https://gitea.io/en-us/ |
 | Gitlab | `gitlab` | https://about.gitlab.com/ |
+| mastodon | `mastodon` | https://joinmastodon.org/ |
+| pleroma | `pleroma` | https://pleroma.social/ |
 ## License
 MIT
