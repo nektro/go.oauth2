@@ -96,5 +96,31 @@ var (
 			Logo:         "https://unpkg.com/simple-icons@latest/icons/reddit.svg",
 			Color:        "#FF4500",
 		},
+		//
+		//
+		//
+		"_gitea": Provider{
+			ID:           "gitea",
+			AuthorizeURL: "https://{domain}/login/oauth/authorize",
+			TokenURL:     "https://{domain}/login/oauth/access_token",
+			MeURL:        "https://{domain}/api/v1/user",
+			NameProp:     "username",
+			NamePrefix:   "@",
+			Logo:         "http://simpleicons.org/icons/gitea.svg",
+			Color:        "#609926",
+			Customable:   true,
+		},
+		"_gitlab": Provider{
+			ID:           "gitlab",
+			AuthorizeURL: "https://{domain}/oauth/authorize",
+			TokenURL:     "https://{domain}/oauth/token",
+			MeURL:        "https://{domain}/api/v4/user",
+			Scope:        "read_user",
+			NameProp:     "username",
+			NamePrefix:   "@",
+			Logo:         "http://simpleicons.org/icons/gitlab.svg",
+			Color:        "#FCA121",
+			Customable:   true,
+		},
 	}
 )

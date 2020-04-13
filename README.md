@@ -56,6 +56,7 @@ type Provider struct {
 	NamePrefix   string `json:"name_prefix"`
 	Logo         string `json:"logo"`
 	Color        string `json:"color"`
+	Customable   string `json:"customable"`
 }
 ```
 - `"id"` is the short-code this is creating.
@@ -66,35 +67,29 @@ type Provider struct {
 - `"name_prop"` is the JSON key of current user's real name in the response of fetching `"me_url"`.
 - `"name_prefix"` is any prefix to put in front of all names, this is typically `@`, `u/`, blank, etc.
 
-## `Provider` Details for Self-Hosted Services
+## `AppConf` Details for Self-Hosted Services
 
-### Custom Gitea Provider
-https://gitea.io/en-us/
+There are also a number of providers that allow you to specify a custom domain for that provider. They are accessed as such:
+
 ```json
-{
-	"id": "gitea",
-	"authorize_url": "https://gitea.example/login/oauth/authorize",
-	"token_url": "https://gitea.example/login/oauth/access_token",
-	"me_url": "https://gitea.example/api/v1/user",
-	"scope": "",
-	"name_prop": "username",
-	"name_prefix": "@"
-}
+...
+"clients": [
+	{
+		"for": "{provider_id},{domain}",
+		"id": "",
+		"secret": ""
+	}
+],
+...
 ```
 
-### Custom GitLab Provider
-https://gitlab.com/
-```json
-{
-	"id": "gitlab",
-	"authorize_url": "https://gitlab.example/oauth/authorize",
-	"token_url": "https://gitlab.example/oauth/token",
-	"me_url": "https://gitlab.example/api/v4/user",
-	"scope": "read_user",
-	"name_prop": "username",
-	"name_prefix": "@"
-}
-```
+So for example, if adding a login config for https://mastodon.social/, your `"for"` key would be `"mastodon,mastodon.social"`
 
+The full list of customizable provider are as follows:
+
+| Identity Provider | Short Code | Home Site |
+| --- | --- | --- |
+| Gitea | `gitea` | https://gitea.io/en-us/ |
+| Gitlab | `gitlab` | https://about.gitlab.com/ |
 ## License
 MIT
