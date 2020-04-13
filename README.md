@@ -70,10 +70,10 @@ type Provider struct {
 https://gitea.io/en-us/
 ```json
 {
-	"for": "gitea",
 	"authorize_url": "https://gitea.example.com/login/oauth/authorize",
 	"token_url": "https://gitea.example.com/login/oauth/access_token",
 	"me_url": "https://gitea.example.com/api/v1/user",
+	"id": "gitea",
 	"scope": "",
 	"name_prop": "username",
 	"name_prefix": "@"
@@ -84,10 +84,10 @@ https://gitea.io/en-us/
 https://gitlab.com/
 ```json
 {
-	"for": "gitlab",
 	"authorize_url": "https://gitlab.com/oauth/authorize",
 	"token_url": "https://gitlab.com/oauth/token",
 	"me_url": "https://gitlab.com/api/v4/user",
+	"id": "gitlab",
 	"scope": "read_user",
 	"name_prop": "username",
 	"name_prefix": "@"
