@@ -134,5 +134,17 @@ var (
 			Color:        "#3088D4",
 			Customable:   true,
 		},
+		"_pleroma": Provider{
+			ID:           "pleroma",
+			AuthorizeURL: "https://{domain}/oauth/authorize",
+			TokenURL:     "https://{domain}/oauth/token",
+			MeURL:        "https://{domain}/api/v1/accounts/verify_credentials",
+			Scope:        "read:accounts",
+			NameProp:     "username",
+			NamePrefix:   "@",
+			Logo:         "https://unpkg.com/simple-icons@latest/icons/pleroma.svg",
+			Color:        "#FBA457",
+			Customable:   true,
+		},
 	}
 )
