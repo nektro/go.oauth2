@@ -122,5 +122,17 @@ var (
 			Color:        "#FCA121",
 			Customable:   true,
 		},
+		"_mastodon": Provider{
+			ID:           "mastodon",
+			AuthorizeURL: "https://{domain}/oauth/authorize",
+			TokenURL:     "https://{domain}/oauth/token",
+			MeURL:        "https://{domain}/api/v1/accounts/verify_credentials",
+			Scope:        "read:accounts",
+			NameProp:     "username",
+			NamePrefix:   "@",
+			Logo:         "https://unpkg.com/simple-icons@latest/icons/mastodon.svg",
+			Color:        "#3088D4",
+			Customable:   true,
+		},
 	}
 )
