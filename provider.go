@@ -10,4 +10,5 @@ type Provider struct {
 	NamePrefix   string `json:"name_prefix"`
 	IDProp       string `json:"id_prop"`
 	Logo         string `json:"logo"`
+	Color        string `json:"color"`
 }

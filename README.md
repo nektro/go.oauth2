@@ -55,6 +55,7 @@ type Provider struct {
 	NameProp     string `json:"name_prop"`
 	NamePrefix   string `json:"name_prefix"`
 	Logo         string `json:"logo"`
+	Color        string `json:"color"`
 }
 ```
 - `"id"` is the short-code this is creating.

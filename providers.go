@@ -11,6 +11,7 @@ var (
 			NameProp:     "name",
 			IDProp:       "user_id",
 			Logo:         "https://unpkg.com/simple-icons@latest/icons/amazon.svg",
+			Color:        "#FF9900",
 		},
 		"battle.net": Provider{
 			ID:           "battle.net",
@@ -20,6 +21,7 @@ var (
 			Scope:        "openid",
 			NameProp:     "battletag",
 			Logo:         "https://unpkg.com/simple-icons@latest/icons/battle-dot-net.svg",
+			Color:        "#00AEFF",
 		},
 		"discord": Provider{
 			ID:           "discord",
@@ -30,6 +32,7 @@ var (
 			NameProp:     "username",
 			NamePrefix:   "@",
 			Logo:         "https://unpkg.com/simple-icons@latest/icons/discord.svg",
+			Color:        "#7289DA",
 		},
 		"facebook": Provider{
 			ID:           "facebook",
@@ -38,6 +41,7 @@ var (
 			MeURL:        "https://graph.facebook.com/me",
 			NameProp:     "name",
 			Logo:         "https://unpkg.com/simple-icons@latest/icons/facebook.svg",
+			Color:        "#1877F2",
 		},
 		"github": Provider{
 			ID:           "github",
@@ -48,6 +52,7 @@ var (
 			NameProp:     "login",
 			NamePrefix:   "@",
 			Logo:         "https://unpkg.com/simple-icons@latest/icons/github.svg",
+			Color:        "#181717",
 		},
 		"gitlab.com": Provider{
 			ID:           "gitlab.com",
@@ -58,6 +63,7 @@ var (
 			NameProp:     "username",
 			NamePrefix:   "@",
 			Logo:         "https://unpkg.com/simple-icons@latest/icons/gitlab.svg",
+			Color:        "#FCA121",
 		},
 		"google": Provider{
 			ID:           "google",
@@ -67,6 +73,7 @@ var (
 			Scope:        "profile",
 			NameProp:     "name",
 			Logo:         "https://unpkg.com/simple-icons@latest/icons/google.svg",
+			Color:        "#4285F4",
 		},
 		"microsoft": Provider{
 			ID:           "microsoft",
@@ -76,6 +83,7 @@ var (
 			Scope:        "https://graph.microsoft.com/user.read",
 			NameProp:     "displayName",
 			Logo:         "https://unpkg.com/simple-icons@latest/icons/microsoft.svg",
+			Color:        "#666666",
 		},
 		"reddit": Provider{
 			ID:           "reddit",
@@ -86,6 +94,7 @@ var (
 			NameProp:     "name",
 			NamePrefix:   "u/",
 			Logo:         "https://unpkg.com/simple-icons@latest/icons/reddit.svg",
+			Color:        "#FF4500",
 		},
 	}
 )
