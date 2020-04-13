@@ -143,7 +143,8 @@ func HandleMultiOAuthLogin(isLoggedIn func(*http.Request) bool, doneURL string, 
 			}
 			template := string(bytes)
 			result, _ := raymond.Render(template, map[string]interface{}{
-				"clients": clients,
+				"clients":   clients,
+				"providers": ProviderIDMap,
 			})
 			fmt.Fprintln(w, result)
 
