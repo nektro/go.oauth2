@@ -164,7 +164,9 @@ func HandleMultiOAuthCallback(doneURL string, clients []AppConf, saveInfo SaveIn
 		for _, item := range clients {
 			if item.For == idp {
 				HandleOAuthCallback(ProviderIDMap[idp], item.ID, item.Secret, saveInfo, doneURL)(w, r)
+				return
 			}
 		}
+		fmt.Fprintln(w, "error: No handler found for provider: "+idp)
 	}
 }
