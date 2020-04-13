@@ -111,6 +111,24 @@ func fixID(id interface{}) string {
 }
 
 func HandleMultiOAuthLogin(isLoggedIn func(*http.Request) bool, doneURL string, clients []AppConf) http.HandlerFunc {
+	for i, item := range clients {
+		cfr := strings.Split(item.For, ",")
+		if len(cfr) == 1 {
+			clients[i] = item
+		}
+		if len(cfr) == 2 {
+			newprov, ok := ProviderIDMap["_"+cfr[0]]
+			util.DieOnError(util.Assert(ok, "Unable to find customable provider '"+cfr[0]+"'"))
+			util.DieOnError(util.Assert(newprov.Customable == true, "Attemped to use non-customizable provider '"+cfr[0]+"' with custom domain '"+cfr[1]+"'"))
+			item.For = cfr[0] + "(" + cfr[1] + ")"
+			newprov.ID = cfr[0] + "(" + cfr[1] + ")"
+			newprov.AuthorizeURL = strings.ReplaceAll(newprov.AuthorizeURL, "{domain}", cfr[1])
+			newprov.TokenURL = strings.ReplaceAll(newprov.TokenURL, "{domain}", cfr[1])
+			newprov.MeURL = strings.ReplaceAll(newprov.MeURL, "{domain}", cfr[1])
+			ProviderIDMap[item.For] = newprov
+			clients[i] = item
+		}
+	}
 	return func(w http.ResponseWriter, r *http.Request) {
 		with := r.URL.Query().Get("with")
 		if len(with) == 0 {
