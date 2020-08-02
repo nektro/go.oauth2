@@ -12,7 +12,8 @@ import (
 
 var (
 	mfs = new(types.MultiplexFileSystem)
-	doa string // default auth
+	doa string       // default auth
+	vcc = []string{} // flag custom clients
 )
 
 func init() {
@@ -23,4 +24,5 @@ func init() {
 	mfs.Add(http.FileSystem(statikFS))
 
 	vflag.StringVar(&doa, "oauth2-default-auth", "", "A default auth to use when multiple appconf's are enabled.")
+	vflag.StringArrayVar(&vcc, "oauth2-client", []string{}, "Custom client config. Pass in the form: for|id|secret")
 }
