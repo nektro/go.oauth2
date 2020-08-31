@@ -16,7 +16,7 @@ import (
 
 type SaveInfoFunc func(req http.ResponseWriter, res *http.Request, provider string, id string, name string, resp map[string]interface{})
 
-func HandleOAuthLogin(isLoggedIn func(*http.Request) bool, doneURL string, idp Provider, appID string) http.HandlerFunc {
+func HandleOAuthLogin(isLoggedIn func(*http.Request) bool, doneURL string, idp Provider, appID, callbackPath string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		if isLoggedIn(r) {
 			w.Header().Add("Location", doneURL)
@@ -24,7 +24,7 @@ func HandleOAuthLogin(isLoggedIn func(*http.Request) bool, doneURL string, idp P
 			urlR, _ := url.Parse(idp.AuthorizeURL)
 			parameters := url.Values{}
 			parameters.Add("client_id", appID)
-			parameters.Add("redirect_uri", util.FullHost(r)+"/callback")
+			parameters.Add("redirect_uri", util.FullHost(r)+callbackPath)
 			parameters.Add("response_type", "code")
 			parameters.Add("scope", idp.Scope)
 			parameters.Add("duration", "temporary")
@@ -110,7 +110,7 @@ func fixID(id interface{}) string {
 	return fmt.Sprintf("%v", id)
 }
 
-func HandleMultiOAuthLogin(isLoggedIn func(*http.Request) bool, doneURL string, clients []AppConf) http.HandlerFunc {
+func HandleMultiOAuthLogin(isLoggedIn func(*http.Request) bool, doneURL string, clients []AppConf, callbackPath string) http.HandlerFunc {
 	for _, item := range vcc {
 		keys := strings.Split(item, "|")
 		clients = append(clients, AppConf{keys[0], keys[1], keys[2], "", "", ""})
@@ -142,13 +142,13 @@ func HandleMultiOAuthLogin(isLoggedIn func(*http.Request) bool, doneURL string, 
 				return
 			}
 			if len(clients) == 1 {
-				HandleOAuthLogin(isLoggedIn, doneURL, ProviderIDMap[clients[0].For], clients[0].ID)(w, r)
+				HandleOAuthLogin(isLoggedIn, doneURL, ProviderIDMap[clients[0].For], clients[0].ID, callbackPath)(w, r)
 				return
 			}
 			if len(doa) > 0 {
 				for _, item := range clients {
 					if item.For == doa {
-						HandleOAuthLogin(isLoggedIn, doneURL, ProviderIDMap[item.For], item.ID)(w, r)
+						HandleOAuthLogin(isLoggedIn, doneURL, ProviderIDMap[item.For], item.ID, callbackPath)(w, r)
 						return
 					}
 				}
@@ -173,7 +173,7 @@ func HandleMultiOAuthLogin(isLoggedIn func(*http.Request) bool, doneURL string, 
 		} else {
 			for _, item := range clients {
 				if item.For == with {
-					HandleOAuthLogin(isLoggedIn, doneURL, ProviderIDMap[item.For], item.ID)(w, r)
+					HandleOAuthLogin(isLoggedIn, doneURL, ProviderIDMap[item.For], item.ID, callbackPath)(w, r)
 				}
 			}
 		}
