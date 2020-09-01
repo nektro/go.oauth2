@@ -36,7 +36,7 @@ func HandleOAuthLogin(isLoggedIn func(*http.Request) bool, doneURL string, idp P
 	}
 }
 
-func HandleOAuthCallback(idp Provider, appID, appSecret string, saveInfo SaveInfoFunc, doneURL string) http.HandlerFunc {
+func HandleOAuthCallback(idp Provider, appID, appSecret string, saveInfo SaveInfoFunc, doneURL, callbackPath string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		code := r.URL.Query().Get("code")
 		if len(code) == 0 {
@@ -48,7 +48,7 @@ func HandleOAuthCallback(idp Provider, appID, appSecret string, saveInfo SaveInf
 		parameters.Add("client_secret", appSecret)
 		parameters.Add("grant_type", "authorization_code")
 		parameters.Add("code", string(code))
-		parameters.Add("redirect_uri", util.FullHost(r)+"/callback")
+		parameters.Add("redirect_uri", util.FullHost(r)+callbackPath)
 		parameters.Add("state", "none")
 
 		req, _ := http.NewRequest("POST", idp.TokenURL, strings.NewReader(parameters.Encode()))
@@ -180,12 +180,12 @@ func HandleMultiOAuthLogin(isLoggedIn func(*http.Request) bool, doneURL string, 
 	}
 }
 
-func HandleMultiOAuthCallback(doneURL string, clients []AppConf, saveInfo SaveInfoFunc) http.HandlerFunc {
+func HandleMultiOAuthCallback(doneURL string, clients []AppConf, saveInfo SaveInfoFunc, callbackPath string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		idp := r.URL.Query().Get("state")
 		for _, item := range clients {
 			if item.For == idp {
-				HandleOAuthCallback(ProviderIDMap[idp], item.ID, item.Secret, saveInfo, doneURL)(w, r)
+				HandleOAuthCallback(ProviderIDMap[idp], item.ID, item.Secret, saveInfo, doneURL, callbackPath)(w, r)
 				return
 			}
 		}
