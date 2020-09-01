@@ -192,3 +192,9 @@ func HandleMultiOAuthCallback(doneURL string, clients []AppConf, saveInfo SaveIn
 		fmt.Fprintln(w, "error: No handler found for provider: "+idp)
 	}
 }
+
+func GetHandlers(isLoggedIn func(*http.Request) bool, doneURL, callbackPath string, clients []AppConf, saveInfo SaveInfoFunc) (http.HandlerFunc, http.HandlerFunc) {
+	l := HandleMultiOAuthLogin(isLoggedIn, doneURL, clients, callbackPath)
+	c := HandleMultiOAuthCallback(doneURL, clients, saveInfo, callbackPath)
+	return l, c
+}
