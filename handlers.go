@@ -112,7 +112,7 @@ func fixID(id interface{}) string {
 
 func HandleMultiOAuthLogin(isLoggedIn func(*http.Request) bool, doneURL string, clients []AppConf, callbackPath string) http.HandlerFunc {
 	for _, item := range vcc {
-		keys := strings.Split(item, "|")
+		keys := strings.SplitN(item, "|", 3)
 		clients = append(clients, AppConf{keys[0], keys[1], keys[2], "", "", ""})
 	}
 	for i, item := range clients {
