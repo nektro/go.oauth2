@@ -108,7 +108,6 @@ var (
 			NamePrefix:   "@",
 			Logo:         "https://unpkg.com/simple-icons@latest/icons/gitea.svg",
 			Color:        "#609926",
-			Customable:   true,
 		},
 		"_gitlab": Provider{
 			ID:           "gitlab",
@@ -120,7 +119,6 @@ var (
 			NamePrefix:   "@",
 			Logo:         "https://unpkg.com/simple-icons@latest/icons/gitlab.svg",
 			Color:        "#FCA121",
-			Customable:   true,
 		},
 		"_mastodon": Provider{
 			ID:           "mastodon",
@@ -132,7 +130,6 @@ var (
 			NamePrefix:   "@",
 			Logo:         "https://unpkg.com/simple-icons@latest/icons/mastodon.svg",
 			Color:        "#3088D4",
-			Customable:   true,
 		},
 		"_pleroma": Provider{
 			ID:           "pleroma",
@@ -144,7 +141,6 @@ var (
 			NamePrefix:   "@",
 			Logo:         "https://unpkg.com/simple-icons@latest/icons/pleroma.svg",
 			Color:        "#FBA457",
-			Customable:   true,
 		},
 	}
 )
