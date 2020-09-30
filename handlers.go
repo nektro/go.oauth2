@@ -9,8 +9,8 @@ import (
 	"net/url"
 	"strconv"
 	"strings"
+	"text/template"
 
-	"github.com/aymerick/raymond"
 	"github.com/nektro/go-util/util"
 )
 
@@ -131,7 +131,7 @@ func HandleMultiOAuthLogin(isLoggedIn func(*http.Request) bool, doneURL string, 
 					}
 				}
 			}
-			reader, err := mfs.Open("/selector.hbs")
+			reader, err := mfs.Open("/selector.tmpl")
 			if err != nil {
 				fmt.Fprintln(w, "error:", err)
 				return
@@ -141,13 +141,12 @@ func HandleMultiOAuthLogin(isLoggedIn func(*http.Request) bool, doneURL string, 
 				fmt.Fprintln(w, "error:", err)
 				return
 			}
-			template := string(bytes)
-			result, _ := raymond.Render(template, map[string]interface{}{
-				"clients":   clients,
+			template, err := template.New("").Parse(string(bytes))
+			util.DieOnError(err)
+			template.Execute(w, map[string]interface{}{
 				"providers": ProviderIDMap,
+				"clients":   clients,
 			})
-			fmt.Fprintln(w, result)
-
 		} else {
 			for _, item := range clients {
 				if item.For == with {
