@@ -14,6 +14,8 @@ func main() {
 
 	htp.Init()
 	iLI := func(*http.Request) bool { return false }
-	htp.Register("/login", http.MethodGet, oauth2.HandleMultiOAuthLogin(iLI, "./", []oauth2.AppConf{}))
-	htp.StartServer(8000)
+	lg, cb := oauth2.GetHandlers(iLI, "/", "/callback", []oauth2.AppConf{}, nil)
+	htp.Register("/login", http.MethodGet, lg)
+	htp.Register("/callback", http.MethodGet, cb)
+	htp.StartServer(80)
 }
