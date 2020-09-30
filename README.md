@@ -2,7 +2,6 @@
 ![loc](https://sloc.xyz/github/nektro/go.oauth2)
 [![license](https://img.shields.io/github/license/nektro/go.oauth2.svg)](https://github.com/nektro/go.oauth2/blob/master/LICENSE)
 [![discord](https://img.shields.io/discord/551971034593755159.svg)](https://discord.gg/P6Y4zQC)
-[![paypal](https://img.shields.io/badge/donate-paypal-009cdf)](https://paypal.me/nektro)
 [![goreportcard](https://goreportcard.com/badge/github.com/nektro/go.oauth2)](https://goreportcard.com/report/github.com/nektro/go.oauth2)
 [![codefactor](https://www.codefactor.io/repository/github/nektro/go.oauth2/badge)](https://www.codefactor.io/repository/github/nektro/go.oauth2)
 
@@ -41,7 +40,7 @@ In order to use an app that uses this library, you will need to create an app on
 
 ## Installing
 ```
-$ go get -u github.com/nektro/go.oauth2
+$ go get -v github.com/nektro/go.oauth2
 ```
 
 ## `Provider` Schema
