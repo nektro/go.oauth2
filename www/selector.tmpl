@@ -11,7 +11,10 @@
         <!---->
         <style>
             body > div { margin: 1em; }
+            body { max-width: 75em; }
             form .ui.button { margin: 1em 0; }
+            .prov { display: inline-flex; flex-direction: column-reverse; justify-content: center; align-items: center; margin: 1em; }
+            label, object { display: block; }
         </style>
     </head>
     <body class="page-login-oauth2">
@@ -22,10 +25,16 @@
             <form action="./login" method="get">
                 <fieldset>
                     <legend>Select a Provider:</legend>
-                    {{range .clients}}
-                    <div>
+                    {{$x := .clients}}
+                    {{$y := .providers}}
+                    {{range $x}}
+                    <div class="prov">
                         <input type="radio" name="with" value="{{.For}}" id="p-{{.For}}">
-                        <label for="p-{{.For}}">{{.For}}</label>
+                        <label for="p-{{.For}}">
+                            {{$z := index $y .For}}
+                            <object type="image/svg+xml" height="48" data="{{$z.Logo}}"></object>
+                            <div>{{.For}}</div>
+                        </label>
                     </div>
                     {{end}}
                 </fieldset>
