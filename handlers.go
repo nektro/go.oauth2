@@ -170,12 +170,12 @@ func HandleMultiOAuthCallback(doneURL string, clients []AppConf, saveInfo SaveIn
 	}
 }
 
-func GetHandlers(isLoggedIn func(*http.Request) bool, doneURL, callbackPath string, clients []AppConf, saveInfo SaveInfoFunc) (http.HandlerFunc, http.HandlerFunc) {
+func GetHandlers(isLoggedIn func(*http.Request) bool, doneURL, callbackPath string, clients *[]AppConf, saveInfo SaveInfoFunc) (http.HandlerFunc, http.HandlerFunc) {
 	for _, item := range vcc {
 		keys := strings.SplitN(item, "|", 3)
-		clients = append(clients, AppConf{keys[0], keys[1], keys[2], "", "", ""})
+		*clients = append(*clients, AppConf{keys[0], keys[1], keys[2], "", "", ""})
 	}
-	for i, item := range clients {
+	for i, item := range *clients {
 		cfr := strings.SplitN(item.For, ",", 2)
 		if len(cfr) == 2 {
 			newprov, ok := ProviderIDMap["_"+cfr[0]]
@@ -186,10 +186,10 @@ func GetHandlers(isLoggedIn func(*http.Request) bool, doneURL, callbackPath stri
 			newprov.TokenURL = strings.ReplaceAll(newprov.TokenURL, "{domain}", cfr[1])
 			newprov.MeURL = strings.ReplaceAll(newprov.MeURL, "{domain}", cfr[1])
 			ProviderIDMap[item.For] = newprov
-			clients[i] = item
+			(*clients)[i] = item
 		}
 	}
-	l := HandleMultiOAuthLogin(isLoggedIn, doneURL, clients, callbackPath)
-	c := HandleMultiOAuthCallback(doneURL, clients, saveInfo, callbackPath)
+	l := HandleMultiOAuthLogin(isLoggedIn, doneURL, *clients, callbackPath)
+	c := HandleMultiOAuthCallback(doneURL, *clients, saveInfo, callbackPath)
 	return l, c
 }
